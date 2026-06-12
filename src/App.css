@@ -27,7 +27,7 @@
   right: -90px;
   top: -120px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(14, 122, 106, 0.2), transparent 68%);
+  background: radial-gradient(circle, rgba(207, 171, 116, 0.16), transparent 68%);
   pointer-events: none;
 }
 
@@ -125,6 +125,7 @@
   display: grid;
   grid-template-columns: minmax(260px, 1.1fr) minmax(280px, 1.4fr) minmax(240px, 1fr);
   gap: 1rem;
+  align-items: stretch;
 }
 
 .panel {
@@ -133,6 +134,7 @@
   background: var(--paper);
   box-shadow: 0 10px 26px rgba(42, 31, 18, 0.08);
   padding: 1rem;
+  min-height: 0;
 }
 
 .panel h2 {
@@ -152,6 +154,9 @@
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
+  height: var(--synced-side-panel-height, auto);
+  min-height: 0;
+  overflow: hidden;
 }
 
 .add-row {
@@ -174,9 +179,12 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  max-height: 315px;
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: none;
   overflow: auto;
   display: grid;
+  align-content: start;
   gap: 0.44rem;
 }
 
@@ -200,6 +208,7 @@
   display: grid;
   gap: 0.85rem;
   align-content: start;
+  align-self: start;
 }
 
 .wheel-frame {
@@ -262,16 +271,23 @@
 }
 
 .history-panel {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 0.8rem;
+  height: var(--synced-side-panel-height, auto);
+  min-height: 0;
+  overflow: hidden;
 }
 
 .history-panel ol {
   margin: 0;
   padding-left: 1rem;
+  flex: 1 1 auto;
+  min-height: 0;
   display: grid;
+  align-content: start;
   gap: 0.65rem;
-  max-height: 280px;
+  max-height: none;
   overflow: auto;
 }
 
@@ -489,6 +505,19 @@ button:focus-visible {
 
   .history-panel {
     grid-column: auto;
+  }
+
+  .entry-panel,
+  .history-panel {
+    height: auto;
+    overflow: visible;
+  }
+
+  .entry-list,
+  .history-panel ol {
+    flex: none;
+    min-height: auto;
+    max-height: 340px;
   }
 
   .dev-controls {

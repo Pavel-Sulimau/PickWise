@@ -5,6 +5,7 @@ import {
   useReducer,
   useRef,
   useState,
+  type CSSProperties,
   type FormEvent,
 } from 'react';
 import confetti from 'canvas-confetti';
@@ -124,8 +125,12 @@ function App() {
   );
   const [winnerState, setWinnerState] = useState<WinnerState | null>(null);
   const [liveAnnouncement, setLiveAnnouncement] = useState('');
+  const [syncedSidePanelHeight, setSyncedSidePanelHeight] = useState<number | null>(
+    null,
+  );
   const spinSettledRef = useRef(true);
   const confettiRef = useRef<ReturnType<typeof confetti.create> | null>(null);
+  const wheelPanelRef = useRef<HTMLElement>(null);
 
   const secureRandomAvailable = useMemo(() => isSecureRandomAvailable(), []);
 
@@ -150,6 +155,26 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    const panel = wheelPanelRef.current;
+    if (!panel) {
+      return;
+    }
+
+    const updateSyncedHeight = () => {
+      setSyncedSidePanelHeight(Math.round(panel.getBoundingClientRect().height));
+    };
+
+    updateSyncedHeight();
+
+    const observer = new ResizeObserver(() => {
+      updateSyncedHeight();
+    });
+
+    observer.observe(panel);
+    return () => observer.disconnect();
+  }, []);
+
   const spinDisabled =
     isSpinning || !secureRandomAvailable || state.entries.length === 0;
   const entryLimitReached = state.entries.length >= MAX_ENTRIES;
@@ -161,6 +186,13 @@ function App() {
     winnerState !== null &&
     !winnerState.removed &&
     state.entries.some((entry) => entry.id === winnerState.entryId);
+
+  const workspaceGridStyle: CSSProperties | undefined =
+    syncedSidePanelHeight !== null
+      ? ({
+          '--synced-side-panel-height': `${syncedSidePanelHeight}px`,
+        } as CSSProperties)
+      : undefined;
 
   function runSpinWithEntries(entries: Entry[]): void {
     if (entries.length === 0 || !secureRandomAvailable) {
@@ -411,7 +443,7 @@ function App() {
         </p>
       ) : null}
 
-      <section className="workspace-grid">
+      <section className="workspace-grid" style={workspaceGridStyle}>
         <section className="panel entry-panel" aria-label="Entries">
           <div className="panel-head">
             <h2>Entries</h2>
@@ -539,10 +571,10 @@ function App() {
           ) : null}
         </section>
 
-        <section className="panel wheel-panel" aria-label="Wheel">
+        <section ref={wheelPanelRef} className="panel wheel-panel" aria-label="Wheel">
           <WheelCanvas
             entries={state.entries}
-            winningEntryId={winnerState?.entryId ?? pendingWinner?.entryId}
+            winningEntryId={winnerState?.entryId}
             rotationDeg={rotationDeg}
             isSpinning={isSpinning}
             spinDurationMs={currentSpinDurationMs}
