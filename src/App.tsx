@@ -425,7 +425,7 @@ function App() {
           <p className="eyebrow">Fair random picker</p>
           <p className="trust-pill">Private by default</p>
         </div>
-        <h1>PickWise</h1>
+        <h1>Fortula</h1>
         <p className="subtitle">Equal-odds wheel picks in seconds.</p>
         <p className="privacy-note">
           Secure randomness runs in your browser with no hidden weighting.

@@ -8,7 +8,7 @@ import {
   type PersistedWheelState,
 } from '../types';
 
-export const STORAGE_KEY = 'pickwise-state-v1';
+export const STORAGE_KEY = 'fortula-state-v1';
 
 function isPlainObject(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null;

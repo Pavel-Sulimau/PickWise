@@ -1,9 +1,9 @@
 ---
 applyTo: "**"
-description: "Repo-wide baseline rules for secure, maintainable, and concise PickWise development."
+description: "Repo-wide baseline rules for secure, maintainable, and concise Fortula development."
 ---
 
-# PickWise General Engineering Baseline
+# Fortula General Engineering Baseline
 
 Use these rules across the whole repository.
 

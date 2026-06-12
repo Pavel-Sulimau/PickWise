@@ -1,6 +1,6 @@
-# PickWise
+# Fortula
 
-PickWise is a privacy-first random picker web app with a fair, secure wheel.
+Fortula is a privacy-first random picker web app with a fair, secure wheel.
 
 ## Highlights
 
@@ -45,7 +45,7 @@ npm run lint && npm run test && npm run build
 ## Security Notes
 
 - Randomness is sourced from Web Crypto via `src/utils/random.ts`.
-- Persistence uses localStorage key `pickwise-state-v1`.
+- Persistence uses localStorage key `fortula-state-v1`.
 - CSP is environment-aware (`vite.config.ts` injects connect-src policy for dev vs build).
 
 ## Deploy

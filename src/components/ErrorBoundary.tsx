@@ -18,7 +18,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
   }
 
   override componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
-    console.error('Unhandled UI error in PickWise', error, errorInfo);
+    console.error('Unhandled UI error in Fortula', error, errorInfo);
   }
 
   override render() {
@@ -26,7 +26,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
       return (
         <main className="app-shell">
           <section className="panel" role="alert" aria-live="assertive">
-            <p className="eyebrow">PickWise</p>
+            <p className="eyebrow">Fortula</p>
             <h1>Something went wrong</h1>
             <p className="muted">
               An unexpected error occurred. Reload the page to continue.

@@ -10,7 +10,7 @@ export default defineConfig(({ command }) => ({
   plugins: [
     react(),
     {
-      name: 'pickwise-csp-connect-src',
+      name: 'fortula-csp-connect-src',
       transformIndexHtml(html) {
         const connectSrc =
           command === 'serve'

@@ -1,4 +1,4 @@
-# PickWise - Privacy-First Single-Page Spinner
+# Fortula - Privacy-First Single-Page Spinner
 ## Revised Implementation Plan
 
 Date: June 12, 2026  
@@ -52,7 +52,7 @@ Build a minimal, modern, one-page random picker where users can manage entries a
 5. Responsive and accessible experience.
 
 ### 1.3 Working Product Name
-Use PickWise as the internal and external working name to avoid brand collision risk.
+Use Fortula as the internal and external product name.
 
 ---
 

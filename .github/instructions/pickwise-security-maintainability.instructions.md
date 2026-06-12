@@ -1,9 +1,9 @@
 ---
 applyTo: "src/**/*.{ts,tsx}"
-description: "PickWise development guardrails for security, fairness, and maintainable React + TypeScript code."
+description: "Fortula development guardrails for security, fairness, and maintainable React + TypeScript code."
 ---
 
-# PickWise Security and Maintainability
+# Fortula Security and Maintainability
 
 Use these rules for all product code changes.
 
